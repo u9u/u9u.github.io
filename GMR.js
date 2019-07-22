@@ -14,7 +14,7 @@ function load(r) {
   else {
     let url = f.url
     let text = localStorage[url]
-    init(text, f)
+    if (text) init(text, f)
     getText(url, t => {
       if (t == text) return
       init(t, f)
@@ -165,7 +165,7 @@ v = {
     { onmouseleave() { u({ navList: 0, navIcon: 1 }) } },
     ['a c1', { href: '/' }, 'Guide'],
     [{ cursor: 'pointer', onclick: openSearchPallete }, 'Files'],
-    ['a c1', { href: 'https://github.com/u9u/r/' }, 'Github'],
+    ['a c1', { href: 'https://github.com/u9u/u9u.github.io/' }, 'Github'],
   ],
   searchPallete: () => [
     'col fixed w100 mw13 mh80 p6 card ma',

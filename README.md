@@ -1,6 +1,6 @@
 # Github Markdown Reader
 GMR is intended for viewing `.md` files on Github, but you might use it to view any markdown on any website.
-- Visit https://u9u.github.io/r to see the following demo.
+- Visit https://u9u.github.io to see the following demo.
 
 # Demo
 ## List
@@ -40,9 +40,9 @@ GMR is intended for viewing `.md` files on Github, but you might use it to view 
 
 # Usage
 ## Add
-1. Append the markdown URL to `https://u9u.github.io/r?r=`
+1. Append the markdown URL to `https://u9u.github.io/?r=`
 2. Press space key or click `Files` on top-right corner, then enter the URL
-3. Save this bookmarklet: `javascript:location.href='https://u9u.github.io/r'+location.href`, Open the URL then click the bookmark.
+3. Save this bookmarklet: `javascript:location.href='https://u9u.github.io/?r='+location.href`, Open the URL then click the bookmark.
 - Basic Github URL is auto transform to its raw file URL
 
 ## Search
