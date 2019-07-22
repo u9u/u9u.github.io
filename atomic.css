@@ -1,0 +1,21 @@
+.ma{margin: auto}
+row,.row{display: flex; }
+col,.col{display: flex; flex-direction: column }
+.cac{justify-content: center; align-items: center }
+.ca{align-items: center }
+.cc{justify-content: center }
+.scroll{overflow: scroll}
+.hidden{overflow: hidden}
+.hidden-x{overflow-x: hidden}
+.fixed{position: fixed}
+.bold{font-weight: bold }
+.t-right{text-align: right}
+.t-center{text-align: center}
+.nowrap{white-space: nowrap}
+.ellipsis{text-overflow: ellipsis}
+.wfit{width: fit-content}
+.hfit{height: fit-content}
+.word-keep{word-break: keep-all}
+.w50{width: 50%}
+.lh5{line-height: 1.5}
+.mh80{max-height: 80%}

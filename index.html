@@ -1,0 +1,64 @@
+<head>
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
+</head>
+<body id="b">
+  <div id="progress" style="background:#222;height:100%;">
+    <div id="bar" style="background:#fff;height:100%"></div>
+  </div>
+</body>
+<script>
+navigator.serviceWorker && navigator.serviceWorker.register('/service-worker.js')
+require(`
+  https://cdn.jsdelivr.net/npm/lodash@4/lodash.min.js
+  https://cdn.jsdelivr.net/npm/snabbdom@0/dist/snabbdom.min.js
+  https://cdn.jsdelivr.net/npm/snabbdom@0/dist/snabbdom-style.min.js
+  https://cdn.jsdelivr.net/npm/snabbdom@0/dist/snabbdom-props.min.js
+  https://cdn.jsdelivr.net/npm/marked@0/lib/marked.min.js
+  animations.css
+  default.css
+  atomic.css
+  global.js
+  base16.js
+  render.js
+  event.js
+  update.js
+  localDB.js
+  GMR.js
+`,
+  () =>
+    document.getElementById('progress').remove(),
+  (nfetched, nUrls) =>
+    document.getElementById('bar').style.width = (nfetched * 100) / nUrls + '%'
+)
+function require(s, onEnd, onFetch) {
+  let urls = s.trim().split('\n')
+  let nFetched = 0
+  let aFetchedJS = []
+  urls.forEach((url,i) => {
+    getText(url, text => {
+      if (url.slice(-3) == '.js') aFetchedJS[i] = [text,url]
+      else evalCSS(text)
+      nFetched++
+      onFetch && onFetch(nFetched, urls.length)
+      if (nFetched == urls.length) {
+        aFetchedJS.forEach( arr=> evalJS(...arr))
+        onEnd && onEnd()
+      }
+    })
+    .catch(e => {
+      console.log(e)
+      document.body.innerHTML = `<pre>${e.stack}</>`
+    })
+  })
+}
+function getText(url, fn) { return fetch(url).then(r => r.text()).then(fn) }
+function evalCSS(text) {
+  let el = document.createElement('style')
+  el.innerHTML = text
+  document.head.append(el)
+}
+function evalJS(text, url) {
+  try { return eval(text) }
+  catch (e) { console.log(url+':\n',e) }
+}
+</script>
